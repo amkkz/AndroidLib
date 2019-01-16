@@ -199,6 +199,30 @@ namespace RegawMOD.Android
         {
             Adb.ExecuteAdbCommandNoReturn(Adb.FormAdbCommand(this, "reboot", "bootloader"));
         }
+         /// <summary>
+        /// Reboots the device into Download Mode(Samsung)
+        /// </summary>
+        public void RebootDownload()
+        {
+            new Thread(new ThreadStart(RebootDownloadThread)).Start();
+        }
+
+        private void RebootDownloadThread()
+        {
+            Adb.ExecuteAdbCommandNoReturn(Adb.FormAdbCommand(this, "reboot", "download"));
+        }
+         /// <summary>
+        /// Reboots the device into EDL Mode
+        /// </summary>
+        public void RebootEDL()
+        {
+            new Thread(new ThreadStart(RebootEDLThread)).Start();
+        }
+
+        private void RebootBootEDLThread()
+        {
+            Adb.ExecuteAdbCommandNoReturn(Adb.FormAdbCommand(this, "reboot", "edl"));
+        }
 
         /// <summary>
         /// Pulls a file from the device
